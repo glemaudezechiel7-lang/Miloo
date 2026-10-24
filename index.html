@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#ff3d78" />
+<title>Pour Toi, Mon Amour ❤️</title>
+<style>
+/* ============================================================
+   RESET + VARIABLES
+============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --rose:#ff3d78;
+  --rose-soft:#ff8fb1;
+  --violet:#a855f7;
+  --ink:#3a1f33;
+  --muted:#8b6b7c;
+  --glass:rgba(255,255,255,.78);
+  --shadow:0 18px 40px -18px rgba(180,40,100,.45);
+  --radius:22px;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  color:var(--ink);
+  min-height:100vh;
+  padding:0 14px 70px;
+  overflow-x:hidden;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #ffd9e6 0%, transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, #e6d9ff 0%, transparent 55%),
+    linear-gradient(160deg,#fff5f8 0%,#ffeaf2 40%,#f3ecff 100%);
+  background-attachment:fixed;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ============================================================
+   COEURS FLOTTANTS
+============================================================ */
+.hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hearts span{
+  position:absolute;bottom:-70px;opacity:.55;
+  animation:floatUp linear infinite;
+  will-change:transform;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg);opacity:0}
+  10%{opacity:.55}
+  100%{transform:translateY(-120vh) rotate(360deg);opacity:0}
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{
+  position:relative;z-index:1;
+  max-width:760px;margin:0 auto;
+  text-align:center;padding:42px 8px 6px;
+}
+.badge-top{
+  display:inline-block;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(255,140,180,.5);
+  color:#c2185b;font-weight:700;font-size:.78rem;
+  padding:8px 16px;border-radius:999px;
+  box-shadow:0 8px 20px -12px rgba(255,61,120,.8);
+  margin-bottom:16px;
+  animation:fadeUp .8s ease both;
+}
+.hero h1{
+  font-size:clamp(1.9rem,8vw,3.2rem);
+  line-height:1.12;
+  letter-spacing:-.5px;
+  animation:fadeUp .9s .1s ease both;
+}
+.hero h1 span{
+  background:linear-gradient(120deg,#ff3d78,#a855f7 70%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p.sub{
+  color:var(--muted);
+  font-size:clamp(.92rem,3.6vw,1.05rem);
+  margin:14px auto 24px;
+  max-width:520px;line-height:1.6;
+  animation:fadeUp .9s .2s ease both;
+}
+.hero .btn{animation:fadeUp .9s .3s ease both}
+.hint{
+  margin-top:14px;font-size:.82rem;color:var(--muted);
+  min-height:20px;transition:.3s;
+}
+
+/* ============================================================
+   BOUTONS
+============================================================ */
+.btn{
+  border:0;cursor:pointer;font:inherit;font-weight:800;
+  border-radius:999px;padding:15px 28px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  transition:transform .18s ease, box-shadow .25s ease, opacity .2s;
+  text-decoration:none;
+}
+.btn:active{transform:scale(.96)}
+.btn:disabled{opacity:.65;cursor:default}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,#ff3d78,#a855f7);
+  box-shadow:0 14px 30px -12px rgba(255,61,120,.9);
+}
+.btn-primary:hover{box-shadow:0 18px 36px -12px rgba(255,61,120,1)}
+
+.btn-ghost{
+  background:rgba(255,255,255,.9);color:#c2185b;
+  border:1px solid rgba(255,140,180,.6);
+  box-shadow:0 10px 24px -14px rgba(255,61,120,.8);
+}
+
+/* ============================================================
+   CARTES
+============================================================ */
+.card{
+  position:relative;z-index:1;
+  max-width:760px;margin:22px auto;
+  background:var(--glass);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px 18px;
+  animation:fadeUp .7s ease both;
+}
+.card h2{
+  font-size:clamp(1.02rem,4vw,1.3rem);
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+  letter-spacing:-.2px;
+}
+.card h2 .ico{font-size:1.25em}
+
+/* ============================================================
+   ACCORDÉON (COLLAPSE)
+============================================================ */
+.acc-item{
+  border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,.65);
+  border:1px solid rgba(255,140,180,.28);
+  margin-bottom:10px;
+  transition:box-shadow .3s, background .3s;
+}
+.acc-item.open{
+  background:#fff;
+  box-shadow:0 14px 30px -20px rgba(255,61,120,.9);
+}
+.acc-head{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding:15px 16px;background:none;border:0;
+  font:inherit;font-weight:800;font-size:.95rem;color:var(--ink);
+  cursor:pointer;text-align:left;
+}
+.acc-head .chev{
+  transition:transform .35s ease;color:var(--rose);font-size:1rem;
+  flex-shrink:0;
+}
+.acc-item.open .chev{transform:rotate(180deg)}
+.acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s cubic-bezier(.4,0,.2,1);
+}
+.acc-inner{padding:0 14px 16px}
+.acc-inner img{
+  width:100%;height:190px;object-fit:cover;display:block;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ffc2d6,#d9c7ff);
+}
+.acc-inner p{
+  margin-top:12px;font-size:.9rem;line-height:1.65;color:var(--muted);
+}
+.acc-inner p b{color:var(--rose)}
+
+/* ============================================================
+   CARROUSEL
+============================================================ */
+.carousel{
+  position:relative;border-radius:18px;overflow:hidden;
+  box-shadow:0 16px 34px -20px rgba(120,20,80,.9);
+  background:linear-gradient(135deg,#ffc2d6,#d9c7ff);
+  touch-action:pan-y;
+}
+.track{
+  display:flex;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.slide{
+  min-width:100%;aspect-ratio:16/10;
+  background:linear-gradient(135deg,#ffc2d6,#d9c7ff);
+}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+
+.nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;border-radius:50%;border:0;
+  background:rgba(255,255,255,.9);color:#c2185b;
+  font-size:1.35rem;font-weight:800;line-height:1;
+  display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 6px 16px -6px rgba(0,0,0,.35);
+  transition:transform .2s;
+}
+.nav:active{transform:translateY(-50%) scale(.9)}
+.nav.prev{left:9px}
+.nav.next{right:9px}
+
+.dots{
+  position:absolute;bottom:11px;left:0;right:0;
+  display:flex;justify-content:center;gap:7px;
+}
+.dot{
+  width:8px;height:8px;border-radius:50%;border:0;padding:0;
+  background:rgba(255,255,255,.6);cursor:pointer;
+  transition:all .3s;
+}
+.dot.active{background:#fff;width:22px;border-radius:5px}
+
+.link-zone{text-align:center;margin-top:14px}
+.pulse{animation:pulseBtn 1.8s ease-in-out infinite}
+@keyframes pulseBtn{
+  0%,100%{box-shadow:0 10px 24px -14px rgba(255,61,120,.8)}
+  50%{box-shadow:0 0 0 8px rgba(255,61,120,.18),0 10px 24px -14px rgba(255,61,120,.9)}
+}
+
+/* ============================================================
+   STICKERS / TEXTES D'AMOUR
+============================================================ */
+.stickers{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+}
+.sticker{
+  position:relative;
+  background:linear-gradient(150deg,#ffffff,#fff0f6);
+  border-radius:18px;padding:20px 14px 16px;
+  text-align:center;
+  border:1.5px dashed rgba(255,61,120,.35);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.sticker:active{transform:scale(.97)}
+.sticker:hover{transform:translateY(-4px);box-shadow:0 18px 30px -20px rgba(255,61,120,.9)}
+.sticker .emoji{
+  font-size:34px;display:block;margin-bottom:9px;
+  animation:wobble 3.2s ease-in-out infinite;
+}
+.sticker:nth-child(2) .emoji{animation-delay:.4s}
+.sticker:nth-child(3) .emoji{animation-delay:.8s}
+.sticker:nth-child(4) .emoji{animation-delay:1.2s}
+.sticker p{font-size:.85rem;font-weight:700;line-height:1.45;color:#6d3d57}
+@keyframes wobble{
+  0%,100%{transform:rotate(-6deg) scale(1)}
+  50%{transform:rotate(6deg) scale(1.08)}
+}
+
+/* ============================================================
+   BOUTON MESSAGE QUI SECOUE
+============================================================ */
+.msg-zone{text-align:center;padding:6px 0 4px}
+.btn-msg{
+  position:relative;
+  font-size:1rem;padding:16px 36px;
+  animation:shake 2.4s ease-in-out infinite;
+}
+@keyframes shake{
+  0%,58%,100%{transform:rotate(0) translateX(0)}
+  62%{transform:rotate(-5deg) translateX(-4px)}
+  66%{transform:rotate(5deg) translateX(4px)}
+  70%{transform:rotate(-5deg) translateX(-4px)}
+  74%{transform:rotate(5deg) translateX(4px)}
+  78%{transform:rotate(-2deg) translateX(-2px)}
+  82%{transform:rotate(0) translateX(0)}
+}
+.badge-dot{
+  position:absolute;top:-9px;right:-9px;
+  background:#ff1f4b;color:#fff;
+  font-size:.72rem;font-weight:900;
+  min-width:24px;height:24px;border-radius:12px;
+  display:grid;place-items:center;padding:0 6px;
+  box-shadow:0 0 0 4px rgba(255,31,75,.18);
+  animation:pulseDot 1.5s ease-in-out infinite;
+}
+@keyframes pulseDot{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 4px rgba(255,31,75,.18)}
+  50%{transform:scale(1.18);box-shadow:0 0 0 8px rgba(255,31,75,.05)}
+}
+
+.msg-box{
+  margin-top:18px;
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .6s cubic-bezier(.4,0,.2,1), opacity .5s, margin .4s;
+}
+.msg-box.open{max-height:800px;opacity:1}
+.msg-inner{
+  background:linear-gradient(150deg,#fff,#fff2f7);
+  border:1px solid rgba(255,140,180,.5);
+  border-left:5px solid var(--rose);
+  border-radius:16px;
+  padding:18px 16px;
+  text-align:left;
+  box-shadow:0 16px 34px -24px rgba(255,61,120,1);
+}
+.msg-inner p{
+  font-size:.95rem;line-height:1.75;color:#5b3247;
+  margin-bottom:12px;
+}
+.msg-inner p:last-child{margin-bottom:0}
+.msg-inner .sign{
+  display:block;text-align:right;font-weight:800;
+  color:var(--rose);font-size:.88rem;margin-top:6px;
+}
+.typing{display:inline-block;width:2px;height:1em;background:var(--rose);
+  vertical-align:-2px;animation:blink .8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ============================================================
+   CALENDRIER
+============================================================ */
+.step{display:none}
+.step.show{display:block;animation:fadeUp .5s ease both}
+
+.cal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;gap:10px;
+}
+.cal-title{
+  font-weight:900;font-size:1rem;color:#c2185b;
+  text-transform:capitalize;
+}
+.cal-nav{
+  width:36px;height:36px;border-radius:50%;border:0;
+  background:#fff;color:var(--rose);font-size:1.15rem;font-weight:900;
+  cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 8px 18px -12px rgba(255,61,120,1);
+  transition:transform .2s;
+}
+.cal-nav:active{transform:scale(.9)}
+
+.cal-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:6px;
+}
+.cal-grid .dow{
+  text-align:center;font-size:.7rem;font-weight:900;
+  color:var(--muted);text-transform:uppercase;
+  padding-bottom:4px;letter-spacing:.5px;
+}
+.cal-day{
+  aspect-ratio:1/1;border:0;border-radius:12px;
+  background:rgba(255,255,255,.85);
+  font:inherit;font-weight:700;font-size:.88rem;
+  color:var(--ink);cursor:pointer;
+  display:grid;place-items:center;
+  transition:transform .18s, background .25s, color .25s;
+  box-shadow:0 4px 10px -8px rgba(120,20,80,.9);
+}
+.cal-day:hover:not(:disabled){background:#ffe0ec;transform:translateY(-2px)}
+.cal-day:disabled{opacity:.28;cursor:not-allowed}
+.cal-day.empty{visibility:hidden}
+.cal-day.selected{
+  background:linear-gradient(135deg,#ff3d78,#a855f7);
+  color:#fff;transform:scale(1.05);
+  box-shadow:0 10px 20px -10px rgba(255,61,120,1);
+}
+.cal-day.today:not(.selected){box-shadow:inset 0 0 0 2px var(--rose-soft)}
+
+.times{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(78px,1fr));
+  gap:9px;margin-top:6px;
+}
+.time-chip{
+  border:0;border-radius:14px;
+  background:rgba(255,255,255,.9);
+  padding:13px 6px;font:inherit;font-weight:800;font-size:.9rem;
+  color:#7a3a58;cursor:pointer;
+  transition:transform .18s, background .25s, color .25s;
+  box-shadow:0 6px 14px -12px rgba(120,20,80,1);
+}
+.time-chip:hover{background:#ffe0ec;transform:translateY(-2px)}
+.time-chip.selected{
+  background:linear-gradient(135deg,#ff3d78,#a855f7);
+  color:#fff;transform:scale(1.05);
+  box-shadow:0 12px 22px -12px rgba(255,61,120,1);
+}
+
+.recap{
+  background:linear-gradient(150deg,#fff,#fff2f7);
+  border:1px solid rgba(255,140,180,.5);
+  border-radius:16px;padding:16px;margin-bottom:14px;
+}
+.recap .row{
+  display:flex;justify-content:space-between;gap:12px;
+  padding:8px 0;font-size:.9rem;
+  border-bottom:1px dashed rgba(255,140,180,.35);
+}
+.recap .row:last-child{border-bottom:0}
+.recap .row span:first-child{color:var(--muted);font-weight:600}
+.recap .row span:last-child{font-weight:900;color:#c2185b;text-align:right}
+
+.status{
+  margin-top:14px;text-align:center;font-size:.86rem;
+  font-weight:700;color:var(--muted);min-height:22px;
+  transition:.3s;
+}
+.status.ok{color:#0f9d58}
+.status.warn{color:#e0791a}
+
+.mini-link{
+  background:none;border:0;color:var(--muted);
+  font:inherit;font-size:.8rem;font-weight:700;
+  text-decoration:underline;cursor:pointer;
+  margin-top:10px;display:block;margin-left:auto;margin-right:auto;
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+.toast{
+  position:fixed;left:50%;bottom:22px;z-index:99;
+  transform:translate(-50%,140%);
+  background:#fff;
+  border:1px solid rgba(255,140,180,.45);
+  border-radius:16px;padding:14px 20px;
+  font-weight:800;font-size:.88rem;color:#7a3a58;
+  box-shadow:0 20px 44px -18px rgba(180,40,100,.75);
+  max-width:92vw;text-align:center;
+  transition:transform .55s cubic-bezier(.2,1.3,.4,1);
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{
+  position:relative;z-index:1;
+  text-align:center;margin-top:34px;
+  font-size:.8rem;color:var(--muted);
+  line-height:1.7;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+@media (max-width:480px){
+  body{padding:0 11px 60px}
+  .card{padding:17px 14px;border-radius:20px;margin:18px auto}
+  .acc-inner img{height:160px}
+  .btn{padding:14px 22px;font-size:.92rem}
+  .btn-msg{padding:15px 28px}
+  .cal-grid{gap:5px}
+  .cal-day{font-size:.82rem;border-radius:10px}
+  .times{grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
+  .time-chip{font-size:.85rem;padding:12px 4px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- Cœurs flottants -->
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+
+<!-- ========================= HERO ========================= -->
+<header class="hero">
+  <div class="badge-top">💌 Un petit mot rien que pour toi</div>
+  <h1>Pour toi, <span>mon amour</span></h1>
+  <p class="sub">Chaque battement de mon cœur porte ton prénom. Fais défiler… tout est pour toi. 💖</p>
+  <button id="btnStart" class="btn btn-primary">▶️ Démarrer la musique</button>
+  <p class="hint" id="hint">Appuie sur le bouton 🎵</p>
+</header>
+
+<main>
+
+  <!-- ========================= ACCORDÉON ========================= -->
+  <section class="card">
+    <h2><span class="ico">📸</span> Nos petits souvenirs</h2>
+
+    <div class="accordion" id="accordion">
+
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span>💫 Le jour où je t'ai vue</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <img src="https://picsum.photos/seed/love-1/900/560" alt="Souvenir" loading="lazy"
+                 onerror="this.style.display='none'">
+            <p>Ce jour-là, tout a changé. <b>Tu es devenue la plus belle pensée de mes journées</b>,
+               et depuis, je ne sais plus respirer sans penser à toi.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span>🌙 Nos longues conversations</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <img src="https://picsum.photos/seed/love-2/900/560" alt="Souvenir" loading="lazy"
+                 onerror="this.style.display='none'">
+            <p>Les heures passent trop vite quand je te parle.
+               <b>Même le silence avec toi est doux.</b> Tu es mon endroit préféré, mon refuge.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span>💍 Ce que je te promets</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <img src="https://picsum.photos/seed/love-3/900/560" alt="Souvenir" loading="lazy"
+                 onerror="this.style.display='none'">
+            <p>Je te promets de <b>choisir ton sourire chaque matin</b>, de te tenir la main
+               même dans les jours gris, et de t'aimer encore plus fort demain qu'aujourd'hui.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= CARROUSEL ========================= -->
+  <section class="card">
+    <h2><span class="ico">🌸</span> Mes pensées défilent…</h2>
+
+    <div class="carousel" id="carousel">
+      <div class="track" id="track">
+        <div class="slide"><img src="https://picsum.photos/seed/amour-1/900/560" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="slide"><img src="https://picsum.photos/seed/amour-2/900/560" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="slide"><img src="https://picsum.photos/seed/amour-3/900/560" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="slide"><img src="https://picsum.photos/seed/amour-4/900/560" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+      </div>
+      <button class="nav prev" type="button" aria-label="Précédent">‹</button>
+      <button class="nav next" type="button" aria-label="Suivant">›</button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div class="link-zone">
+      <a id="lienBtn" class="btn btn-ghost" ></a>
+    </div>
+  </section>
+
+  <!-- ========================= STICKERS ========================= -->
+  <section class="card">
+    <h2><span class="ico">💕</span> Des mots pour toi</h2>
+    <div class="stickers">
+      <div class="sticker">
+        <span class="emoji">💖</span>
+        <p>Tu es la plus belle chose qui me soit arrivée.</p>
+      </div>
+      <div class="sticker">
+        <span class="emoji">🌹</span>
+        <p>Chaque jour avec toi vaut mille soleils.</p>
+      </div>
+      <div class="sticker">
+        <span class="emoji">✨</span>
+        <p>Ton sourire éclaire mes nuits les plus sombres.</p>
+      </div>
+      <div class="sticker">
+        <span class="emoji">🫶</span>
+        <p>Je t'aime plus que les mots ne sauraient le dire.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= BOUTON MESSAGE ========================= -->
+  <section class="card msg-zone">
+    <h2 style="justify-content:center"><span class="ico">🔔</span> Un message t'attend…</h2>
+
+    <button id="btnMsg" class="btn btn-primary btn-msg" type="button">
+      <span>✉️</span> Message
+      <span class="badge-dot" id="badgeDot">1</span>
+    </button>
+
+    <div class="msg-box" id="msgBox">
+      <div class="msg-inner">
+        <p>Ma chérie,</p>
+        <p>
+          Tu ne sais pas à quel point <b>tu me manques</b>.
+          Je n'arrive plus à supporter le fait de ne pas te voir…
+          J'ai trop hâte de te retrouver. 💔
+        </p>
+        <p>
+          Je fais de mon mieux, mais ça ne veut pas sortir de ma tête.
+          Tu es là, tout le temps, dans chaque pensée. 🥺
+        </p>
+        <span class="sign">— Ton amour ❤️</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CALENDRIER ========================= -->
+  <section class="card">
+    <h2><span class="ico">📅</span> Choisis le jour de notre rencontre</h2>
+
+    <!-- ÉTAPE 1 : CALENDRIER -->
+    <div class="step show" id="step1">
+      <div class="cal-head">
+        <button class="cal-nav" id="prevMonth" type="button" aria-label="Mois précédent">‹</button>
+        <div class="cal-title" id="calTitle">—</div>
+        <button class="cal-nav" id="nextMonth" type="button" aria-label="Mois suivant">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <!-- ÉTAPE 2 : HEURE -->
+    <div class="step" id="step2">
+      <p style="font-size:.92rem;color:#8b6b7c;margin-bottom:14px;line-height:1.6">
+        💬 <b>Super choix mon amour !</b> Maintenant, choisis <b>l'heure</b> qui te convient. 🕒
+      </p>
+      <div class="times" id="times"></div>
+      <button class="mini-link" id="backToDay" type="button">← Changer de jour</button>
+    </div>
+
+    <!-- ÉTAPE 3 : CONFIRMATION -->
+    <div class="step" id="step3">
+      <div class="recap">
+        <div class="row"><span>📅 Jour</span><span id="recapDate">—</span></div>
+        <div class="row"><span>🕒 Heure</span><span id="recapTime">—</span></div>
+      </div>
+      <div class="msg-inner" style="margin-bottom:14px">
+        <p>
+          D'accord mon amour, j'ai trop hâte de te retrouver.
+          Tu ne sais pas à quel point tu me manques… 💕
+        </p>
+        <span class="sign">— À très vite ❤️</span>
+      </div>
+      <div class="status" id="sendStatus">📨 Envoi de ton choix…</div>
+      <button class="mini-link" id="restart" type="button">↺ Choisir une autre date</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Fait avec ❤️ rien que pour toi.<br>
+  <span style="opacity:.7">Tu es mon plus beau hasard.</span>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">💌 Tu as 1 nouveau message qui t'attend…</div>
+
+<!-- Audio -->
+<audio id="audio" preload="none" loop></audio>
+
+<script>
+/* ============================================================
+   ⚙️  CONFIGURATION — MODIFIE CES 3 LIGNES
+============================================================ */
+const CONFIG = {
+  // 1️⃣ Ton adresse email (celle qui recevra le choix de la date)
+  email: "glemaudezechiel7@gmail.com",
+
+  // 2️⃣ Lien de la musique (mp3 en ligne). Laisse "" pour une mélodie générée automatiquement.
+  musique: "Goulam.mp3",
+
+
+};
+/* ========================================================== */
+
+
+/* ============================================================
+   1. CŒURS FLOTTANTS
+============================================================ */
+(function heartsBackground(){
+  const wrap = document.getElementById('hearts');
+  const symbols = ['❤️','💕','💖','💗','🌸','✨','💘','🩷'];
+  const total = window.innerWidth < 600 ? 12 : 20;
+
+  for(let i = 0; i < total; i++){
+    const s = document.createElement('span');
+    s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.fontSize = (12 + Math.random() * 20) + 'px';
+    s.style.animationDuration = (9 + Math.random() * 11) + 's';
+    s.style.animationDelay = (-Math.random() * 18) + 's';
+    wrap.appendChild(s);
+  }
+})();
+
+
+/* ============================================================
+   2. ACCORDÉON
+============================================================ */
+document.querySelectorAll('.acc-item').forEach(item => {
+  const head = item.querySelector('.acc-head');
+  const body = item.querySelector('.acc-body');
+
+  head.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+
+    // Ferme tous les autres
+    document.querySelectorAll('.acc-item').forEach(other => {
+      if(other !== item){
+        other.classList.remove('open');
+        other.querySelector('.acc-body').style.maxHeight = null;
+      }
+    });
+
+    if(isOpen){
+      item.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+
+// Ouvre le premier par défaut
+window.addEventListener('load', () => {
+  const first = document.querySelector('.acc-item');
+  if(first){
+    first.classList.add('open');
+    const b = first.querySelector('.acc-body');
+    b.style.maxHeight = b.scrollHeight + 'px';
+  }
+});
+
+
+/* ============================================================
+   3. MUSIQUE (fichier mp3 OU mélodie générée)
+============================================================ */
+let musicStarted = false;
+let audioCtx = null;
+let melodyTimer = null;
+
+function startMelody(){
+  if(audioCtx) return;
+  try{
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }catch(e){ return; }
+
+  const notes = [
+    523.25, 659.25, 783.99, 659.25,   // Do Mi Sol Mi
+    587.33, 698.46, 880.00, 698.46,   // Ré Fa La Fa
+    493.88, 587.33, 739.99, 587.33,   // Si Ré Fa# Ré
+    523.25, 659.25, 783.99, 1046.50   // Do Mi Sol Do
+  ];
+  let i = 0;
+
+  function playNote(){
+    if(!audioCtx) return;
+    const t = audioCtx.currentTime;
+
+    // Mélodie douce
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = notes[i % notes.length];
+
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.10, t + 0.06);
+    gain.gain.exponentialRampToValueAtTime(0.0008, t + 1.0);
+
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t);
+    osc.stop(t + 1.05);
+
+    // Basse discrète
+    if(i % 4 === 0){
+      const bass = audioCtx.createOscillator();
+      const bg = audioCtx.createGain();
+      bass.type = 'triangle';
+      bass.frequency.value = notes[i % notes.length] / 4;
+      bg.gain.setValueAtTime(0, t);
+      bg.gain.linearRampToValueAtTime(0.05, t + 0.1);
+      bg.gain.exponentialRampToValueAtTime(0.0005, t + 2.0);
+      bass.connect(bg).connect(audioCtx.destination);
+      bass.start(t);
+      bass.stop(t + 2.1);
+    }
+
+    i++;
+  }
+
+  playNote();
+  melodyTimer = setInterval(playNote, 520);
+}
+
+function startMusic(){
+  if(musicStarted) return;
+  musicStarted = true;
+
+  const audio = document.getElementById('audio');
+
+  if(CONFIG.musique && CONFIG.musique.trim() !== ''){
+    audio.src = CONFIG.musique;
+    audio.volume = 0.55;
+    audio.play().catch(() => startMelody());
+  } else {
+    startMelody();
+  }
+}
+
+
+/* ============================================================
+   4. CARROUSEL
+============================================================ */
+const track   = document.getElementById('track');
+const dotsEl  = document.getElementById('dots');
+const carousel= document.getElementById('carousel');
+const nbSlides = track.children.length;
+let idx = 0;
+let autoTimer = null;
+
+// Points
+for(let i = 0; i < nbSlides; i++){
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.type = 'button';
+  d.setAttribute('aria-label', 'Image ' + (i + 1));
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+}
+
+function goTo(i){
+  idx = (i + nbSlides) % nbSlides;
+  track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+  dotsEl.querySelectorAll('.dot').forEach((d, k) => {
+    d.classList.toggle('active', k === idx);
+  });
+}
+
+function startAuto(){
+  if(autoTimer) return;
+  autoTimer = setInterval(() => goTo(idx + 1), 2600);
+}
+
+document.querySelector('.nav.prev').addEventListener('click', () => {
+  goTo(idx - 1); restartAuto();
+});
+document.querySelector('.nav.next').addEventListener('click', () => {
+  goTo(idx + 1); restartAuto();
+});
+
+function restartAuto(){
+  clearInterval(autoTimer);
+  autoTimer = null;
+  startAuto();
+}
+
+// Swipe tactile
+let touchX = 0;
+carousel.addEventListener('touchstart', e => {
+  touchX = e.changedTouches[0].clientX;
+}, {passive:true});
+carousel.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - touchX;
+  if(Math.abs(diff) > 45){
+    goTo(diff < 0 ? idx + 1 : idx - 1);
+    restartAuto();
+  }
+}, {passive:true});
+
+
+/* ============================================================
+   5. BOUTON DÉMARRER + TIMER 5 SECONDES
+============================================================ */
+const btnStart = document.getElementById('btnStart');
+const hint     = document.getElementById('hint');
+const lienBtn  = document.getElementById('lienBtn');
+
+lienBtn.href = CONFIG.lien;
+
+btnStart.addEventListener('click', () => {
+  startMusic();
+
+  btnStart.disabled = true;
+  btnStart.innerHTML = '🎵 Musique en cours…';
+  hint.textContent = '🎧';
+
+  setTimeout(() => {
+    startAuto();
+    hint.textContent = '✨ Les images défilent maintenant…';
+
+    // Le lien apparaît et pulse
+    lienBtn.hidden = false;
+    lienBtn.classList.add('pulse');
+
+    showToast('');
+  }, 5000);
+});
+
+
+/* ============================================================
+   6. TOAST
+============================================================ */
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 4200);
+}
+
+// Notification au chargement
+window.addEventListener('load', () => {
+  setTimeout(() => showToast("💌 Tu as 1 nouveau message qui t'attend…"), 2600);
+});
+
+
+/* ============================================================
+   7. BOUTON MESSAGE
+============================================================ */
+const btnMsg  = document.getElementById('btnMsg');
+const msgBox  = document.getElementById('msgBox');
+const badge   = document.getElementById('badgeDot');
+
+btnMsg.addEventListener('click', () => {
+  const opened = msgBox.classList.contains('open');
+
+  if(!opened){
+    msgBox.classList.add('open');
+    btnMsg.querySelector('span:nth-child(2)') // sécurité
+    badge.style.display = 'none';
+    btnMsg.style.animation = 'none';
+
+    // Scroll doux vers le message
+    setTimeout(() => {
+      msgBox.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 220);
+  } else {
+    msgBox.classList.remove('open');
+  }
+});
+
+
+/* ============================================================
+   8. CALENDRIER + HEURE + ENVOI EMAIL
+============================================================ */
+const MOIS  = ['Janvier','Février','Mars','Avril','Mai','Juin',
+               'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+const JOURS = ['Lu','Ma','Me','Je','Ve','Sa','Di'];
+
+const HOURS = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00',
+               '16:00','17:00','18:00','19:00','20:00','21:00'];
+
+let viewDate = new Date();
+let choix = { date: null, heure: null };
+
+const calTitle  = document.getElementById('calTitle');
+const calGrid   = document.getElementById('calGrid');
+const step1     = document.getElementById('step1');
+const step2     = document.getElementById('step2');
+const step3     = document.getElementById('step3');
+const timesEl   = document.getElementById('times');
+const recapDate = document.getElementById('recapDate');
+const recapTime = document.getElementById('recapTime');
+const sendStatus= document.getElementById('sendStatus');
+
+/* ---- Rendu du calendrier ---- */
+function renderCalendar(){
+  const y = viewDate.getFullYear();
+  const m = viewDate.getMonth();
+
+  calTitle.textContent = MOIS[m] + ' ' + y;
+  calGrid.innerHTML = '';
+
+  // Jours de la semaine
+  JOURS.forEach(j => {
+    const d = document.createElement('div');
+    d.className = 'dow';
+    d.textContent = j;
+    calGrid.appendChild(d);
+  });
+
+  // Décalage (lundi = 0)
+  const firstDay = new Date(y, m, 1).getDay();
+  const offset = (firstDay === 0) ? 6 : firstDay - 1;
+
+  for(let i = 0; i < offset; i++){
+    const e = document.createElement('div');
+    e.className = 'cal-day empty';
+    calGrid.appendChild(e);
+  }
+
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  for(let d = 1; d <= daysInMonth; d++){
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cal-day';
+    btn.textContent = d;
+
+    const dt = new Date(y, m, d);
+    dt.setHours(0,0,0,0);
+
+    if(dt.getTime() === today.getTime()) btn.classList.add('today');
+    if(dt < today) btn.disabled = true;
+
+    if(choix.date && dt.getTime() === choix.date.getTime()){
+      btn.classList.add('selected');
+    }
+
+    btn.addEventListener('click', () => selectDay(new Date(y, m, d)));
+    calGrid.appendChild(btn);
+  }
+}
+
+/* ---- Navigation mois ---- */
+document.getElementById('prevMonth').addEventListener('click', () => {
+  const now = new Date();
+  const prev = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
+  // On ne remonte pas avant le mois courant
+  if(prev.getFullYear() < now.getFullYear() ||
+    (prev.getFullYear() === now.getFullYear() && prev.getMonth() < now.getMonth())) return;
+  viewDate = prev;
+  renderCalendar();
+});
+
+document.getElementById('nextMonth').addEventListener('click', () => {
+  viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
+  renderCalendar();
+});
+
+/* ---- Sélection du jour ---- */
+function selectDay(dt){
+  choix.date = dt;
+  choix.heure = null;
+  renderCalendar();
+
+  step1.classList.remove('show');
+  step3.classList.remove('show');
+  step2.classList.add('show');
+
+  // Reset des heures
+  timesEl.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+
+  step2.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* ---- Boutons d'heure ---- */
+HOURS.forEach(h => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'time-chip';
+  b.textContent = h;
+  b.addEventListener('click', () => selectTime(h, b));
+  timesEl.appendChild(b);
+});
+
+function selectTime(h, btn){
+  choix.heure = h;
+
+  timesEl.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected');
+
+  // Affichage récap
+  const dateTxt = choix.date.toLocaleDateString('fr-FR', {
+    weekday:'long', day:'numeric', month:'long', year:'numeric'
+  });
+  recapDate.textContent = dateTxt;
+  recapTime.textContent = h;
+
+  step2.classList.remove('show');
+  step3.classList.add('show');
+  step3.scrollIntoView({behavior:'smooth', block:'center'});
+
+  // ⚡ Envoi automatique de l'email
+  envoyerChoix(dateTxt, h);
+}
+
+/* ---- Retour ---- */
+document.getElementById('backToDay').addEventListener('click', () => {
+  step2.classList.remove('show');
+  step1.classList.add('show');
+  step1.scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.getElementById('restart').addEventListener('click', () => {
+  choix = { date:null, heure:null };
+  viewDate = new Date();
+  sendStatus.textContent = '';
+  sendStatus.className = 'status';
+  timesEl.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+  step3.classList.remove('show');
+  step2.classList.remove('show');
+  step1.classList.add('show');
+  renderCalendar();
+  step1.scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+/* ---- Envoi de l'email ---- */
+async function envoyerChoix(dateTxt, heure){
+  const sujet = '💌 Notre rendez-vous — elle a choisi !';
+
+  const corps =
+`Ma chérie a choisi notre rendez-vous !
+
+📅 Jour  : ${dateTxt}
+🕒 Heure : ${heure}
+
+« D'accord mon amour, j'ai trop hâte de te retrouver.
+Tu ne sais pas à quel point tu me manques… »
+
+— Envoyé depuis la page "Pour Toi, Mon Amour" ❤️`;
+
+  sendStatus.textContent = '⏳ Envoi en cours…';
+  sendStatus.className = 'status';
+
+  // --- Méthode 1 : FormSubmit (aucun serveur nécessaire) ---
+  try{
+    const res = await fetch(
+      'https://formsubmit.co/ajax/' + encodeURIComponent(CONFIG.email),
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: sujet,
+          Jour: dateTxt,
+          Heure: heure,
+          Message: corps,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      }
+    );
+
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+
+    sendStatus.textContent = "✅ C'est envoyé mon amour ! Je l'ai bien reçu. 💕";
+    sendStatus.classList.add('ok');
+    showToast('✅ Ton choix m\'a été envoyé ! 💖');
+    return;
+
+  }catch(err){
+    // --- Méthode 2 : ouverture de la messagerie (fallback) ---
+    sendStatus.textContent = '📧 Ouverture de ta messagerie pour envoyer ton choix…';
+    sendStatus.classList.add('warn');
+
+    const mailto = 'mailto:' + CONFIG.email +
+      '?subject=' + encodeURIComponent(sujet) +
+      '&body='    + encodeURIComponent(corps);
+
+    window.location.href = mailto;
+    showToast('📧 Appuie sur "Envoyer" dans ta messagerie 💌');
+  }
+}
+
+/* ---- Init calendrier ---- */
+renderCalendar();
+</script>
+</body>
+</html>
